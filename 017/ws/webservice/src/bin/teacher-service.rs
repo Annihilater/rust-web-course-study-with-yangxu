@@ -1,5 +1,6 @@
 use actix_web::{web, App, HttpServer};
 use dotenv::dotenv;
+use errors::MyError;
 use sqlx::postgres::PgPoolOptions;
 use std::env;
 use std::io;
@@ -38,8 +39,12 @@ async fn main() -> io::Result<()> {
     let app = move || {
         App::new()
             .app_data(shared_data.clone()) // 把 AppState 注册到 app
+            .app_data(web::JsonConfig::default().error_handler(|_err, _req| {
+                MyError::InvalidInput("Please provide valid Json input".to_string()).into()
+            })) //
             .configure(general_routes) // 配置 app 的路由
             .configure(course_routes)
+            .configure(teacher_routes)
     };
 
     // 配置 web server
