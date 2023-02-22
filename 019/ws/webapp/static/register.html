@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Teacher registration</title>
+
+</head>
+
+<body>
+    <h2 class="header">Teacher registration</h2>
+    <div class="center">
+        <form action="/register-post" method="POST">
+            <label for="name">Teacher name</label><br />
+            <input type="text" name="name" id="name" value="{{ current_name }}" maxlength="" />
+
+            <label for="picture_url">Teahcer image url</label><br />
+            <input type="text" name="picture_url" id="picture_url" value="{{ current_picture_url }}" maxlength="" />
+
+            <label for="profile">Brief profile</label><br />
+            <input type="text" name="profile" id="profile" value="{{ current_profile }}" maxlength="" />
+
+            <label for="error">
+                <p style="color: red;">{{ error }}</p>
+            </label>
+            <br />
+            <button type="submit" id="button1">Register</button>
+        </form>
+    </div>
+</body>
+
+</html>
