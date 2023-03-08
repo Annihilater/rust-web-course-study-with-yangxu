@@ -1,0 +1,28 @@
+[package]
+name = "webservice"
+version = "0.1.0"
+edition = "2021"
+# 当我们运行 webservice 的时候，如果不指明二进制文件，那么就默认运行 teacher-service
+default-run = "teacher-service"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+actix-cors = "0.6.0-beta.10"
+actix-rt = "2.6.0"
+actix-web = "4.0.0-rc.2"
+chrono = { version = "0.4.19", features = ["serde"] }
+dotenv = "0.15.0"
+openssl = { version = "0.10.38", features = ["vendored"] }
+serde = { version = "1.0.132", features = ["derive"] }
+sqlx = { version = "0.5.10", default-features = false, features = [
+    "postgres",
+    "runtime-tokio-rustls",
+    "macros",
+    "chrono",
+] }
+log = "0.4.0"
+env_logger = "0.9.0"
+
+[[bin]]
+name = "teacher-service"
